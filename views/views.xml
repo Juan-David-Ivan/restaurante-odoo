@@ -1,0 +1,187 @@
+<odoo>
+  <data>
+    <!--===================== -->
+    <!--Vistas ingrediente-->
+    <!--===================== -->
+
+
+    <record model="ir.ui.view" id="restaurante.list">
+      <field name="name">restaurante.categoria.list</field>
+      <field name="model">restaurante.categoria</field>
+      <field name="arch" type="xml">
+        <list string="Categoria">
+          <field name="nombreCategoria"/>
+        </list>
+      </field>
+    </record>
+
+
+    <record id="view_categoria_form" model="ir.ui.view">
+      <field name="name">restaurante.categoria.form</field>
+      <field name="model">restaurante.categoria</field>
+      <field name="arch" type="xml">
+        <form string="Categoria">
+          <sheet>
+            <group>
+              <field name="nombreCategoria"/>
+            </group>
+            <notebook>
+              <page string="Plato">
+                <field name="plato_id"/>
+              </page>
+              </page>
+            </notebook>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+
+    <!--===================== -->
+    <!--Vistas plato-->
+    <!--===================== -->
+
+     <record id="view_plato_list" model="ir.ui.view">
+      <field name="name">restaurante.plato.list</field>
+      <field name="model">restaurante.plato</field>
+      <field name="arch" type="xml">
+        <list string="Plato">
+          <!--Columnas-->
+          <field name="nombrePlato"/>
+          <field name="tipoPlato"/>
+          <field name="precioPlato"/>
+        </list>
+      </field>
+    </record>
+
+    <record id="view_plato_form" model="ir.ui.view">
+      <field name="name">restaurante.plato.form</field>
+      <field name="model">restaurante.plato</field>
+      <field name="arch" type="xml">
+        <form string="Plato">
+          <sheet>
+            <group>
+            <!--Campos para crear un plato-->
+              <field name="nombrePlato"/>
+              <field name="tipoPlato"/>
+              <field name="precioPlato"/>
+              <field name="categoria_id"/>
+            </group>
+           
+            <notebook>
+              <page string="Categoria">
+                <field name="categoria_ids"/>
+              </page>
+            </notebook>
+           
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!--========================-->
+    <!--Vistas Categoria-->
+    <!--========================-->
+    <record id="view_ingrediente_list" model="ir.ui.view">
+      <field name="name">restaurante.ingrediente.list</field>
+      <field name="model">restaurante.ingrediente</field>
+      <field name="arch" type="xml">
+        <list string="Ingrediente">
+          <!--Columnas-->
+          <field name="nombreIngrediente"/>
+          <field name="cantidadIngrediente"/>
+        </list>
+      </field>
+    </record>
+
+    <!-- FORMULARIO DE ALTA PARA INGREDIENTES -->
+
+    <record id="view_ingrediente_form" model="ir.ui.view">
+      <field name="name">restaurante.ingrediente.form</field>
+      <field name="model">restaurante.ingrediente</field>
+      <field name="arch" type="xml">
+        <form string="Ingrediente">
+          <sheet>
+            <group>
+            <!--Campos para crear un ingrediente-->
+              <field name="nombreIngrediente"/>
+              <field name="cantidadIngrediente"/>
+            </group>
+            
+            <notebook>
+              <page string="Plato">
+                <field name="plato_id"/>
+              </page>
+            </notebook>
+          
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Acciones -->
+
+    <record model="ir.actions.act_window" id="restaurante_categoria">
+      <field name="name">Categoria</field>
+      <field name="res_model">restaurante.categoria</field>
+      <field name="view_mode">list,form</field>
+    </record>    
+
+    <record model="ir.actions.act_window" id="restaurante_plato">
+      <field name="name">Plato</field>
+      <field name="res_model">restaurante.plato</field>
+      <field name="view_mode">list,form</field>
+    </record>   
+
+     <record model="ir.actions.act_window" id="restaurante_ingrediente">
+      <field name="name">Ingrediente</field>
+      <field name="res_model">restaurante.ingrediente</field>
+      <field name="view_mode">list,form</field>
+    </record>
+
+    <!--Menú principal-->
+    <menuitem id="menu_restaurante_root" name="Proyectos"/>
+
+    <!--Submenus-->
+    <menuitem id="menu_restaurante_categoria" name="Categoria" parent="menu_restaurante_root" action="action_categoria"/>
+
+    <menuitem id="menu_restaurante_plato" name="Plato" parent="menu_restaurante_root" action="action_plato"/>
+
+    <menuitem id="menu_restaurante_proyectos" name="Ingredientes" parent="menu_restaurante_root" action="action_ingrediente"/>
+
+
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="restaurante.action_server">
+      <field name="name">restaurante server</field>
+      <field name="model_id" ref="model_restaurante_restaurante"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "list,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="restaurante" id="restaurante.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="restaurante.menu_1" parent="restaurante.menu_root"/>
+    <menuitem name="Menu 2" id="restaurante.menu_2" parent="restaurante.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="restaurante.menu_1_list" parent="restaurante.menu_1"
+              action="restaurante.action_window"/>
+    <menuitem name="Server to list" id="restaurante" parent="restaurante.menu_2"
+              action="restaurante.action_server"/>
+-->
+  </data>
+</odoo>
