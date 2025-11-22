@@ -23,6 +23,7 @@ Proyecto realizado por Juan David
     # always loaded
     'data': [
         'security/ir.model.access.csv',
+        'reports/plato_report.xml',
         'views/views.xml',
         'views/templates.xml',
     ],

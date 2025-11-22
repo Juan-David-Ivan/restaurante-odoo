@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_report_plato" model="ir.actions.report">
+        <field name="name">Informe del plato</field>
+        <field name="model">restaurante.plato</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">restaurante.report_plato</field>
+        <field name="binding_model_id" ref="restaurante.model_restaurante_plato"/>
+        <field name="binding_type">report</field>
+    </record>
+
+    <template id="report_plato">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="plato">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Informe de <t t-esc="plato.display_name"/></h2>
+
+                        <table class="table table-sm table-bordered" style="width:100%;">
+                            <thead>
+                                <tr>
+                                    <th>Nombre del plato</th>
+                                    <th>Tipo de plato</th>
+                                    <th>Precio del plato</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><t t-esc="plato.nombrePlato"/></td>
+                                    <td><t t-esc="plato.tipoPlato"/></td>
+                                    <td>
+                                        <t t-esc="plato.precioPlato"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>
